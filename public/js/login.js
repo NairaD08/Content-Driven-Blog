@@ -13,8 +13,23 @@ const loginFormHandler = async (event) => {
       headers: { 'Content-Type': 'application/json' },
     });
 
+    //     if (response.ok) {
+    //       // If successful, redirect the browser to the profile page
+    //       document.location.replace('/profile');
+    //     } else {
+    //       alert(response.statusText);
+    //     }
+    //   }
+    // };
+
     if (response.ok) {
-      // If successful, redirect the browser to the profile page
+      const data = await response.json(); // Assuming the response includes user data
+      const name = data.name; // Adjust this based on how your API returns the user's name
+
+      // Set the title with the user's name
+      document.title = `Welcome to Your Profile, ${name}`;
+
+      // Redirect the browser to the profile page
       document.location.replace('/profile');
     } else {
       alert(response.statusText);
